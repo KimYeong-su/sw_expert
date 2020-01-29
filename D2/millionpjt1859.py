@@ -20,22 +20,21 @@ for case in range(cases):
 
     print(f'#{case+1} {result}')
 
-'''
-n = int(input())
+
+# n = int(input())
  
-for i in range(n):
-    case_num = int(input())
-    raw_data = input()
-    price_data = list(map(int, raw_data.split()))
-    benefit = 0
-    last_one = price_data[-1]
-    for j in range(1, case_num):
-        if price_data[-1-j] <= last_one:
-            benefit += last_one - price_data[-1-j]
+# for i in range(n):
+#     case_num = int(input())
+#     raw_data = input()
+#     price_data = list(map(int, raw_data.split()))
+#     benefit = 0
+#     last_one = price_data[-1]
+#     for j in range(1, case_num):
+#         if price_data[-1-j] <= last_one:
+#             benefit += last_one - price_data[-1-j]
  
-        else:
-            last_one = price_data[-1-j]
+#         else:
+#             last_one = price_data[-1-j]
  
  
-    print('#'+str(i+1)+' '+str(benefit))
-'''
+#     print('#'+str(i+1)+' '+str(benefit))
