@@ -1,4 +1,4 @@
-def isWall(x, y):
+def Wall(x, y):
     if x < 0 or x >= N:
         return True
     if y < 0 or y >= N:
@@ -18,7 +18,7 @@ for case in range(1, int(input())+1):
             while True:
                 nx = x+dx[i]
                 ny = y+dy[i]
-                if isWall(nx, ny):
+                if Wall(nx, ny):
                     break
                 if Array[nx][ny] != 0 and val > Array[nx][ny]:
                     break
