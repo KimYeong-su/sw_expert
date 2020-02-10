@@ -8,8 +8,10 @@ for case in range(cases):
     for i in number:
         c = 0
         c = base.count(i)
-        number.values(i) = c
-    print(number)
+        number[i] = c
+    print(s)
+    for i in number:
+        print((i+' ')*number[i])
 
 
 # for case in range(cases):
