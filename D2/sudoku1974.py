@@ -47,10 +47,6 @@ for case in range(cases):
         for j in map(int, input().split()):
             temp.append(j)
         base.append(temp)
-    # print(f'#{case+1}')
-    # print(row_search(base))
-    # print(colume_search(base))
-    # print(square_search(base))
 
     if row_search(base)==1 and colume_search(base)==1 and square_search(base)==1:
         print(f'#{case+1} 1')
