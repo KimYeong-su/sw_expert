@@ -7,7 +7,7 @@ def pipe(r,c,time):
     t=1
     cnt=1
     while t<time:
-        for index in range(len(history)):
+        for _ in range(len(history)):
             pr,pc=history.pop(0)
             if base[pr][pc]==1:
                 for i in range(4):
@@ -15,22 +15,22 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i == 0:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 5 or base[nr][nc] == 6:
+                            if base[nr][nc] in (1,2,5,6):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         elif i==1:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 4 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,2,4,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         elif i==2:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 4 or base[nr][nc] == 5:
+                            if base[nr][nc] in (1,3,4,5):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 6 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,3,6,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
@@ -40,12 +40,12 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i==0:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 5 or base[nr][nc] == 6:
+                            if base[nr][nc] in (1,2,5,6):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 4 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,2,4,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
@@ -55,12 +55,12 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i==2:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 4 or base[nr][nc] == 5:
+                            if base[nr][nc] in (1,3,4,5):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 6 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,3,6,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
@@ -70,12 +70,12 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i==0:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 5 or base[nr][nc] == 6:
+                            if base[nr][nc] in (1,2,5,6):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 6 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,3,6,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
@@ -85,12 +85,12 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i==1:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 4 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,2,4,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 6 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,3,6,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
@@ -100,12 +100,12 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i==1:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 4 or base[nr][nc] == 7:
+                            if base[nr][nc] in (1,2,4,7):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 4 or base[nr][nc] == 5:
+                            if base[nr][nc] in (1,3,4,5):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
@@ -115,12 +115,12 @@ def pipe(r,c,time):
                     nc = pc+dy[i]
                     if N>nr>=0 and 0<=nc<M and check_arr[nr][nc]==0:
                         if i==0:
-                            if base[nr][nc] == 1 or base[nr][nc] == 2 or base[nr][nc] == 5 or base[nr][nc] == 6:
+                            if base[nr][nc] in (1,2,5,6):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
                         else:
-                            if base[nr][nc] == 1 or base[nr][nc] == 3 or base[nr][nc] == 4 or base[nr][nc] == 5:
+                            if base[nr][nc] in (1,3,4,5):
                                 check_arr[nr][nc]=1
                                 history.append((nr,nc))
                                 cnt+=1
