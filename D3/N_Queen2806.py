@@ -1,18 +1,24 @@
 def promissing(a):
     #같은열, 같은 대각선 여부 판단 : True False 리턴
-    for i in col:
-        if a==i:
+    for i in range(1,a):
+        if col[a]==col[i]:
+            return False
+        if abs(i-a)==abs(col[i]-col[a]):
             return False
     return True
 
 def queen(level):
     global cnt
-    if level > N:
-        return
-    if promissing(level)==False:
+    if level == N+1:
+        cnt+=1
         return
     #재귀호출로 각 행에 체스를 놓기
-    col[level] = i
+    for i in range(level,N+1):
+        col[level] = i
+        if promissing(level)==False:
+            continue
+        queen(level+1)
+        
 
 T = int(input())
 
