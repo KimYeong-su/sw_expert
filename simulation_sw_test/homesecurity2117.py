@@ -27,7 +27,7 @@ for tc in range(1,T+1):
         for i in range(N):
             for j in range(N):
                 cnt = area(i,j,k)
-                if M*cnt-money>0:
+                if M*cnt-money>=0:
                     if maximum<cnt:
                         maximum = cnt
 
