@@ -6,24 +6,31 @@ def cal(oper,num1,num2):
     elif oper == 2:
         return num1*num2
     else:
-        if num1 < 0:
-            return num1//num2+1
-        return num1//num2
+        return int(num1/num2)
     
 
-def permutation(input,i):
-    if i == len(input)-1:
-        temp = []
-        for i in input:
-            temp.append(i)
-        if temp not in history:
+def permutation(arr, r):
+    # 1.
+    used = [0 for _ in range(len(arr))]
+
+    def generate(chosen, used):
+        # 2.
+        if len(chosen) == r:
+            temp = []
+            for i in chosen:
+                temp.append(i)
             history.append(temp)
-    else:
-        for j in range(i,len(input)):
-            if input[i] != input[j]:
-                input[i], input[j] = input[j], input[i]
-            permutation(input,i+1)
-            input[i], input[j] = input[j], input[i]
+            return
+	
+        for i in range(len(arr)):
+	    # 3.
+            if not used[i] and (i == 0 or arr[i-1] != arr[i] or used[i-1]):
+                chosen.append(arr[i])
+                used[i] = 1
+                generate(chosen, used)
+                used[i] = 0
+                chosen.pop()
+    generate([], used)
 
 T = int(input())
 
@@ -33,14 +40,14 @@ for tc in range(1,T+1):
     operator_count = list(map(int,input().split()))
     numbers = list(map(int,input().split()))
     operator = []
-    maximum = -10000
-    minimum = 10000
+    maximum = -100000000
+    minimum = 100000000
     for i,count in enumerate(operator_count):
         for _ in range(count):
             operator.append(i)
     history = []
-    permutation(operator,0)
-    print(len(history))
+    permutation(operator,N-1)
+
     for a in history:
         for i in range(N-1):
             if i == 0:
