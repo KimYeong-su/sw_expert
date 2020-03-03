@@ -1,55 +1,36 @@
-def cal(oper,num1,num2):
-    if oper == 0:
-        return num1+num2
-    elif oper == 1:
-        return num1-num2
-    elif oper == 2:
-        return num1*num2
+def f(a,add,sub,mul,div,result):
+    global maximum, minimum
+    if a==N:
+        if result>maximum:
+            maximum = result
+        if result<minimum:
+            minimum = result
+        return
     else:
-        if num1 < 0:
-            return num1//num2+1
-        return num1//num2
-    
-
-def permutation(input,i):
-    if i == len(input)-1:
-        temp = []
-        for i in input:
-            temp.append(i)
-        if temp not in history:
-            history.append(temp)
-    else:
-        for j in range(i,len(input)):
-            if input[i] != input[j]:
-                input[i], input[j] = input[j], input[i]
-            permutation(input,i+1)
-            input[i], input[j] = input[j], input[i]
+        if add:
+            add -= 1
+            f(a+1,add, sub, mul, div,result+numbers[a])
+            add += 1
+        if sub:
+            sub -= 1
+            f(a+1,add, sub, mul, div,result-numbers[a])
+            sub += 1
+        if mul:
+            mul -= 1
+            f(a+1,add, sub, mul, div,result*numbers[a])
+            mul += 1
+        if div:
+            div -= 1
+            f(a+1,add, sub, mul, div,int(result/numbers[a]))
+            div += 1
 
 T = int(input())
-
 for tc in range(1,T+1):
     N = int(input())
+    oper_count = list(map(int,input().split()))
 
-    operator_count = list(map(int,input().split()))
     numbers = list(map(int,input().split()))
-    operator = []
-    maximum = -10000
-    minimum = 10000
-    for i,count in enumerate(operator_count):
-        for _ in range(count):
-            operator.append(i)
-    history = []
-    permutation(operator,0)
-    print(len(history))
-    for a in history:
-        for i in range(N-1):
-            if i == 0:
-                result = cal(a[0],numbers[0],numbers[1])
-            else:
-                result = cal(a[i],result,numbers[i+1])
-        if result > maximum:
-            maximum = result
-        if result < minimum:
-            minimum = result
-    # print(maximum,minimum)
+    maximum = -1000000000
+    minimum = 1000000000
+    f(1,oper_count[0],oper_count[1],oper_count[2],oper_count[3],numbers[0])
     print('#{} {}'.format(tc,maximum-minimum))
