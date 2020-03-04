@@ -35,19 +35,21 @@
 
 def work(arr,i,temp,result):
     global maximum
+    if maximum >= result:
+        return
     if i == N:
         if maximum < result:
             maximum = result
-            print(maximum)
+            # print(maximum)
         return
     else:
         for p in range(N):
             if temp[p]==0:
                 temp[p]=1
-                if i ==0:
-                    work(arr,i+1,temp,arr[i][p])
-                else:
-                    work(arr,i+1,temp,result*arr[i][p])
+                # if i ==0:
+                #     work(arr,i+1,temp,arr[i][p])
+                # else:
+                work(arr,i+1,temp,result*arr[i][p])
                 temp[p]=0
 
 
