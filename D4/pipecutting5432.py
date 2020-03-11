@@ -2,7 +2,6 @@ T = int(input())
 
 for tc in range(1,T+1):
     case = input()
-    stack = []
     pipe = []
     result = 0
     for i in range(len(case)-1):
