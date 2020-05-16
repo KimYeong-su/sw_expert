@@ -12,7 +12,6 @@ def f(n,k,s,e):
         if minimum>abs(temp):
             minimum = abs(temp)
         return
-        
     else:
         for i in range(s, e-k+n+1):
             C[n] = i
