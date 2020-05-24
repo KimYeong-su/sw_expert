@@ -1,4 +1,4 @@
-'''
+
 # 크루스칼 알고리즘
 def find(i):
     global P
@@ -12,12 +12,11 @@ def check():
     num = 0
     P={}
     rank={}
-    for i in range(V+1):
+    for i in range(V):
         P[i] = i
         rank[i] = 0
     for i in range(E):
-        s,e=base[i][0]
-        w = base[i][1]
+        s,e,w=base[i]
         x = find(s)
         y = find(e)
         if x!=y:
@@ -30,18 +29,17 @@ def check():
             cnt+=w
             num+=1
         # print(P)
-        if num==V-1:
+        if num>=V-1:
             return cnt
     
 T = int(input())
 for tc in range(1,T+1):
     V,E = map(int,input().split())
-    base = {}
+    base = []
     for _ in range(E):
         s, e, w = map(int,input().split())
-        base[(s,e)] = w
-    base = sorted(base.items(), key=lambda x : x[1])
+        base.append((s-1,e-1,w))
+    base = sorted(base, key=lambda x : x[2])
     # print(base)
     result = check()
     print('#{} {}'.format(tc,result))
-'''
