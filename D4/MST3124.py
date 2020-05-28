@@ -8,10 +8,10 @@ def find(i):
 
 def check():
     global P
-    cnt = 0
-    num = 0
-    P={}
-    rank={}
+    cnt = 0 # 가중치 더해가기
+    num = 0 # 간선 갯수
+    P={} # key값(최대 부모(root))
+    rank={} # 덩어리 덩어리 이어질때
     for i in range(V):
         P[i] = i
         rank[i] = 0

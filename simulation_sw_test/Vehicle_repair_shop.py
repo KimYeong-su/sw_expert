@@ -4,11 +4,11 @@ for tc in range(1,T+1):
     # A : 지갑 놓고간 접수창구, B : 지갑 놓고간 정비창구
     N, M, K, A, B = map(int,input().split())
     a = list(map(int,input().split()))
-    h_a = [[]*N]
-    t_a = [0*N]
+    h_a = [[]for _ in range(N)]
+    t_a = [0]*N
     b = list(map(int,input().split()))
-    h_b = [[]*M]
-    t_b = [0*M]
+    h_b = [[]for _ in range(N)]
+    t_b = [0]*M
     time = list(map(int,input().split()))
     if time[0]!=0:
         for i in range(K):
@@ -33,10 +33,13 @@ for tc in range(1,T+1):
                 t_a[i] -= 1
                 if t_a[i]==0:
                     temp_b.append(h_a[i][-1])
+
         # b time count
         for i in range(M):
             if t_b[i]!=0:
                 t_b[i] -= 1
+                if t_b[i]==0:
+                    
 
         # temp_a -> a
         for i in range(N):

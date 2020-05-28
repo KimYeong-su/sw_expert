@@ -1,25 +1,24 @@
-cases = int(input())
+def check(number,cnt):
+    global result
+    if cnt==0:
+        temp = int(''.join(number))
+        if result<temp:
+            result = temp
+        return
+    for i in range(len(number)-1):
+        for j in range(i+1,len(number)):
+            number[i],number[j]=number[j],number[i]
+            temp1 = int(''.join(number))
+            if temp1 not in history[cnt]:
+                history[cnt].append(temp1)
+                check(number,cnt-1)
+            number[i],number[j]=number[j],number[i]
 
-for case in range(cases):
-    num, c = map(str,input().split())
-    init = list(map(int,num))
-    setup = list(sorted(init,reverse=True))
-    # print(setup)
-    
-    c = int(c)
-    i = 0
-    while c > 0:
-        if init[i] != setup[i]:
-            for j in range(-1,-len(init)-1,-1):
-                if init[j] == setup[i]:
-                    init[i], init[len(init)+j] = init[len(init)+j], init[i]
-                    c -= 1
-                    if i<len(init)-1:
-                        i += 1
-        else:
-            if i<len(init)-1:
-                i += 1
-            else:
-                init[len(init)-1], init[len(init)-2] = init[len(init)-2], init[len(init)-1]
-
-    print(init)
+T = int(input())
+for tc in range(1,T+1):
+    init,n = map(str,input().split())
+    history=[[] for _ in range(int(n)+1)]
+    result=0
+    init = list(init)
+    check(init,int(n))
+    print('#{} {}'.format(tc,result))
