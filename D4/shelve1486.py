@@ -6,11 +6,13 @@ for tc in range(1,T+1):
 
     result = 10000
     for i in range(1<<N):
-        temp = 0
+        temp = -B
         for j in range(N+1):
             if i & (1<<j):
                 temp += clerk[j]
-        if temp >= B:
-            if result > temp-B:
-                result = temp-B
+                if temp>result:
+                    break
+        if temp >= 0:
+            if result > temp:
+                result = temp
     print('#{} {}'.format(tc,result))
