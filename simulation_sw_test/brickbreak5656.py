@@ -1,66 +1,80 @@
 di = [0,0,1,-1]
 dj = [1,-1,0,0]
 
-def remove(c,N,W,H,br):
-    q=[]
-    r=0
-    while(r<H and br[r][c]==0):
-        r += 1
-    if r==H:
-        return
-    q.append((r,c))
-    while(len(q)!=0):
-        i,j = q.pop(0)
-        k = br[i][j]
-        br[i][j]=0
-        for dis in range(1,k):
-            for dir in range(4):
-                ni = i + dis*di[dir]
-                nj = j + dis*dj[dir]
-                if 0<=ni<H and 0<=nj<W:
-                    q.append((ni,nj))
+def deepcopy(base, h, w):
+    tmp = []
+    for i in range(h):
+        tmp1 = []
+        for j in range(w):
+            tmp1.append(base[i][j])
+        tmp.append(tmp1)
+    return tmp
 
-def shoot(N,W,H):
-    br = [[0]*W for _ in range(H)]
-    for i in range(H):
-        for j in range(W):
-            br[i][j] = org[i][j]
-    for i in range(N):
-        remove(p[i],N,W,H,br)
-    for i in range(W):
-        st = []
-        for j in range(H-1,-1,-1):
-            if br[j][i] != 0:
-                st.append(br[j][i])
-                br[j][i] = 0
-        for j in range(0,len(st)):
-            br[H-1-j][i] = st[j]
-    cnt = 0
-    for i in range(H):
-        for j in range(W):
-            if br[i][j] != 0:
-                cnt += 1
-    return cnt
-
-def npr(n,k,W,H):
+def dfs(base, num):
     global minV
-    if n==k:
-        r = shoot(k,W,H)
-        if minV>r:
-            minV = r
+    if num == N:
+        tmp = H * W
+        for i in range(H):
+            tmp -= base[i].count(0)
+        if tmp < minV:
+            minV = tmp
+            # for i in range(H):
+            #     print(base[i])
+            # print()
+        return
+    for c in range(W):
+        c_base = deepcopy(base, H, W)
+        answer = bb(c_base, c)
+        dfs(answer, num+1)
+
+
+def bb(base, col):
+    queue = []
+    for i in range(H):
+        if base[i][col]:
+            queue.append((i,col))
+            break
     else:
-        for i in range(W):
-            p[n] = i
-            npr(n+1,k,W,H)
-            if minV==0:
-                return
+        return base
+    while queue:
+        i, j = queue.pop(0)
+        for c in range(base[i][j]):
+            if c == 0:
+                base[i][j] = 0
+            else:
+                for a in range(4):
+                    ni = i + di[a] * c
+                    nj = j + dj[a] * c
+                    if 0 <= ni < H and 0 <= nj < W:
+                        if base[ni][nj] == 1:
+                            base[ni][nj] = 0
+                        elif base[ni][nj] > 1:
+                            queue.append((ni, nj))
+
+    tmp = [[0]*H for _ in range(W)]
+    for i in range(H):
+        for j in range(W):
+            tmp[W-j-1][i] = base[i][j]
+    tmp2 = []
+    for i in range(W):
+        tmp1 = []
+        for j in tmp[i]:
+            if j:
+                tmp1.append(j)
+        else:
+            while len(tmp1) != H:
+                tmp1.insert(0,0)
+        tmp2.append(tmp1)
+    tmp = [[0]*W for _ in range(H)]
+    for i in range(W):
+        for j in range(H):
+            tmp[j][W-i-1] = tmp2[i][j]
+    return tmp
 
 T = int(input())
-
 for tc in range(1,T+1):
     N,W,H = map(int,input().split())
     org = [list(map(int,input().split()))for _ in range(H)]
-    p = [0]*N
-    minV = 100000000
-    npr(0,N,W,H)
+    minV = float('inf')
+    dfs(org, 0)
     print('#{} {}'.format(tc,minV))
